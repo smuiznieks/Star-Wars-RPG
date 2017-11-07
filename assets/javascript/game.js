@@ -15,9 +15,9 @@ var button4 = $('#button-4');
 
 function getNewNumber() {
 	correctAnswer = Math.floor((Math.random() * 101) + 19);
-	blue = Math.floor((Math.random() * 12) + 10);
-	green = Math.floor((Math.random() * 9) + 7);
-	pink = Math.floor((Math.random() * 6) + 4);
+	blue = Math.floor((Math.random() * 3) + 10);
+	green = Math.floor((Math.random() * 3) + 7);
+	pink = Math.floor((Math.random() * 3) + 4);
 	purple = Math.floor((Math.random() * 3) + 1);
 	guess = 0;
 	button1.attr('value', blue);

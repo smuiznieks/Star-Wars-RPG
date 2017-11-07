@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<meta charset="UTF-8">
+	<title>Crystals Collector</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="assets/css/style.css"> 
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<h1>Crystals Collector!</h1>
+				<p>Match your total score to the random number by clicking on a crystal to add a specifi amount of points to your score. The value of each crystal is hidden from you until you click on it.</p>
+				<p>You lose the game if your total score goes above the random number. Each time the game starts, the values of each crystal will change.</p>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+  					<div class="panel-body">
+  						<h2>
+	    					<div id="randomNumber">
+	    					</div>
+	    				</h2>
+  					</div>
+				</div>
+			</div>
+			<div class="col-sm-4">
+				<div class="panel panel-default">
+  					<div class="panel-body">
+  						<div id="message"></div>
+    					<p>Wins: <span id="wins"></span></p>
+    					<p>Losses: <span id="loses"></span></p>
+  					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-2">
+				<img src="assets/images/blue.png" alt="Blue Crystal" />
+			</div>
+			<div class="col-sm-2">
+				<img src="assets/images/green.png" alt="Green Crystal" />
+			</div>
+			<div class="col-sm-2">
+				<img src="assets/images/pink.png" alt="Pink Crystal" />
+			</div>
+			<div class="col-sm-2">
+				<img src="assets/images/purple.png" alt="Purple Crystal" />
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8">
+				<div class="panel panel-default">
+  					<div class="panel-heading">
+    					<h3 class="panel-title">Your total score:</h3>
+  					</div>
+  					<div class="panel-body">
+    					<div id="yourScore"></div>
+  					</div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+			</div>
+		</div>
+	</div>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="assets/javascript/game.js"></script>
+</body>
+</html>

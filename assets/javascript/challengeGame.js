@@ -1,56 +1,74 @@
-//var yourCharacter = '';
-//var character1 = $('#Korr');
-//var character2 = $('#Maz');
-//var character3 = $('#Rey');
-//var character4 = $('#Leia');
+var characterActivated = false;
+var enemyActivated = false;
 
-//var korr = {
-//	name: 'Korr',
-//	healthPoints: 100,
-//	attackPower: 4,
-//	counterAttackPower: 10,
-//	currentCharacter: false,
-//}
+var currentGame = {
+	healthPoints: '',
+	attackPower: '',
+	counterAttackPower: '',
+};
 
-//var maz = {
-//	name: 'Maz',
-//	healthPoints: 120,
-//	attackPower: 6,
-//	counterAttackPower: 15,
-//	currentCharacter: false,
-//}
+var currentEnemy = {
+	healthPoints: '',
+	attackPower: '',
+	counterAttackPower: '',
+};
 
-//var rey = {
-//	name: 'Rey',
-//	healthPoints: 150,
-//	attackPower: 8,
-//	counterAttackPower: 20,
-//	currentCharacter: false,
-//}
+var	Korr = {
+	name: 'Korr',
+	healthPoints: 100,
+	attackPower: 4,
+	counterAttackPower: 10,
+	enemy: '',
+};
 
-//var leia = {
-//	name: 'Leia',
-//	healthPoints: 180,
-//	attackPower: 10,
-//	counterAttackPower: 25,
-//	currentCharacter: false,
-//}
+var Maz = {
+	name: 'Maz',
+	healthPoints: 120,
+	attackPower: 6,
+	counterAttackPower: 15,
+	enemy: '',
+};
+	
+var Rey = {
+	name: 'Rey',
+	healthPoints: 150,
+	attackPower: 8,
+	counterAttackPower: 20,
+	enemy: '',
+};
 
-//function newGame () {
-//	character1.attr('value', korr);
-//	character2.attr('value', maz);
-//	character3.attr('value', rey);
-//	character4.attr('value', leia);
-//}
+var Leia = {
+	name: 'Leia',
+	healthPoints: 180,
+	attackPower: 10,
+	counterAttackPower: 25,
+	enemy: '',
+};
 
-//newGame ();
+var characters = [Korr, Maz, Rey, Leia];
 
-$('.character').on('click', function () {
-	yourCharacter = $(this).attr('id');
+$('.character').on('click', function() {
+	var yourCharacter = $(this).attr('id');
 	console.log(yourCharacter);
-	//console.log(this.name);
-	//this.currentCharacter = true;
-	//console.log(this.currentCharacter);
-	//console.log(this.healthPoints);
+	if (characterActivated === false) {
+		for (i = 0; i < characters.length; i++) {
+			if (yourCharacter === characters[i].name) {
+				$('.activeCharacter').append($(this));
+				characterActivated = true;
+				characters[i].enemy = false;
+				currentGame.healthPoints = characters[i].healthPoints;
+				currentGame.attackPower = characters[i].attackPower;
+				currentGame.counterAttackPower = characters[i].counterAttackPower;
+				console.log(currentGame); 
+			}
+			if (characters[i].enemy !== false) {
+				$()
+				console.log(characters[i].name + characters[i].enemy);
+			}
+		}
+	}
+})
 
+$('.availableEnemies').on('click', function() {
+	var yourEnemy = $(this).attr('id');
 })

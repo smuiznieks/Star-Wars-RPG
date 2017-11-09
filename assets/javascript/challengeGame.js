@@ -1,74 +1,118 @@
-var characterActivated = false;
+var yourCharacterActivated = false;
 var enemyActivated = false;
 
-var currentGame = {
+var yourCharacter = {
+	name: '',
 	healthPoints: '',
 	attackPower: '',
-	counterAttackPower: '',
+	counterAttackPower: 0,
 };
 
-var currentEnemy = {
+var currentDefender = {
+	name: '',
 	healthPoints: '',
 	attackPower: '',
-	counterAttackPower: '',
 };
 
 var	Korr = {
 	name: 'Korr',
 	healthPoints: 100,
 	attackPower: 4,
-	counterAttackPower: 10,
-	enemy: '',
+	//enemy: true,
 };
 
 var Maz = {
 	name: 'Maz',
 	healthPoints: 120,
 	attackPower: 6,
-	counterAttackPower: 15,
-	enemy: '',
+	//enemy: true,
 };
 	
 var Rey = {
 	name: 'Rey',
 	healthPoints: 150,
 	attackPower: 8,
-	counterAttackPower: 20,
-	enemy: '',
+	//enemy: true,
 };
 
 var Leia = {
 	name: 'Leia',
 	healthPoints: 180,
 	attackPower: 10,
-	counterAttackPower: 25,
-	enemy: '',
+	//enemy: true,
 };
 
-var characters = [Korr, Maz, Rey, Leia];
+var availableCharacters = [Korr, Maz, Rey, Leia];
 
 $('.character').on('click', function() {
-	var yourCharacter = $(this).attr('id');
-	console.log(yourCharacter);
-	if (characterActivated === false) {
-		for (i = 0; i < characters.length; i++) {
-			if (yourCharacter === characters[i].name) {
-				$('.activeCharacter').append($(this));
-				characterActivated = true;
-				characters[i].enemy = false;
-				currentGame.healthPoints = characters[i].healthPoints;
-				currentGame.attackPower = characters[i].attackPower;
-				currentGame.counterAttackPower = characters[i].counterAttackPower;
-				console.log(currentGame); 
-			}
-			if (characters[i].enemy !== false) {
-				$()
-				console.log(characters[i].name + characters[i].enemy);
+	$('.duelStats').empty();
+	if (enemyActivated === true) {
+		$('.duelStats').append('<br>' + 'Press the attack button to start playing!');
+	}
+	else if (yourCharacterActivated === true) {
+		currentDefender.name = $(this).attr('id');
+		for (i = 0; i < availableCharacters.length; i++)  {
+			if (currentDefender.name === availableCharacters[i].name) {
+				$('.defender').append($(this));
+				enemyActivated = true;
+				currentDefender.healthPoints = availableCharacters[i].healthPoints;
+				currentDefender.attackPower = availableCharacters[i].attackPower;
+				console.log(currentDefender);
 			}
 		}
 	}
-})
+	if (yourCharacterActivated === false) {
+		yourCharacter.name = $(this).attr('id');
+		for (i = 0; i < availableCharacters.length; i++) {
+			if (yourCharacter.name === availableCharacters[i].name) {
+				$('.activeCharacter').append($(this));
+				yourCharacterActivated = true;
+				//availableCharacters[i].enemy = false;
+				yourCharacter.healthPoints = availableCharacters[i].healthPoints;
+				yourCharacter.attackPower = availableCharacters[i].attackPower;
+				console.log(yourCharacter); 
+			}
+			else {
+				$('.availableEnemies').append($('.roster'));
+			}
+		}
+	}
+});
 
-$('.availableEnemies').on('click', function() {
-	var yourEnemy = $(this).attr('id');
-})
+$('.attack').on('click', function() {
+	if (yourCharacterActivated === false) {
+		$('.duelStats').empty();
+		$('.duelStats').append('<br>' + 'Select your character.');
+	}
+	else if (enemyActivated === false) {
+		$('.duelStats').empty();
+		$('.duelStats').append('<br>' + 'Select your opponent.');
+	}
+	else if (yourCharacter.healthPoints < 1) {
+		$('.defender').empty();
+	}
+	else {
+		yourCharacter.counterAttackPower++;
+		var currentPower = (yourCharacter.counterAttackPower * yourCharacter.attackPower);
+		$('.duelStats').empty();
+		$('.duelStats').append('<br>' + 'You attacked ' + currentDefender.name + ' for ' + (currentPower) + ' points.' + '<br>');
+		$('.duelStats').append(currentDefender.name + ' attacked  you for ' + currentDefender.attackPower + ' points.');
+		yourCharacter.healthPoints = (yourCharacter.healthPoints - currentDefender.attackPower);
+		currentDefender.healthPoints = (currentDefender.healthPoints - currentPower);
+		
+		if (currentDefender.healthPoints < 1) {
+			$('.defender').empty();
+			$('.duelStats').append('<br>' + 'You have defeated ' + currentDefender.name + '!');
+			enemyActivated = false;
+		}
+
+		if (yourCharacter.healthPoints < 1) {
+			$('.duelStats').append('<br>' + 'You have been defeated by ' + currentDefender.name + '. Try again.');
+		}
+
+		else {
+			$('.duelStats').append('<br>' + 'Your Health Points: ' + yourCharacter.healthPoints);
+			$('.duelStats').append('<br>' + currentDefender.name + ' Health Points: ' + currentDefender.healthPoints);
+		}
+	}
+});

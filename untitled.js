@@ -24,21 +24,21 @@ var	Korr = {
 var Maz = {
 	name: 'Maz',
 	healthPoints: 120,
-	attackPower: 8,
+	attackPower: 6,
 	//enemy: true,
 };
 	
 var Rey = {
 	name: 'Rey',
 	healthPoints: 150,
-	attackPower: 12,
+	attackPower: 8,
 	//enemy: true,
 };
 
 var Leia = {
 	name: 'Leia',
 	healthPoints: 180,
-	attackPower: 16,
+	attackPower: 10,
 	//enemy: true,
 };
 
@@ -47,6 +47,7 @@ var availableCharacters = [Korr, Maz, Rey, Leia];
 $('.character').on('click', function() {
 	$('.duelStats').empty();
 	if (enemyActivated === true) {
+		$('.duelStats').append('<br>' + 'Press the attack button to start playing!');
 	}
 	else if (yourCharacterActivated === true) {
 		currentDefender.name = $(this).attr('id');
@@ -61,7 +62,6 @@ $('.character').on('click', function() {
 		}
 	}
 	if (yourCharacterActivated === false) {
-		$('#enemies').append('Enemies Available to Attack:');
 		yourCharacter.name = $(this).attr('id');
 		for (i = 0; i < availableCharacters.length; i++) {
 			if (yourCharacter.name === availableCharacters[i].name) {
@@ -79,8 +79,6 @@ $('.character').on('click', function() {
 	}
 });
 
-var wins = 0;
-
 $('.attack').on('click', function() {
 	if (yourCharacterActivated === false) {
 		$('.duelStats').empty();
@@ -89,6 +87,9 @@ $('.attack').on('click', function() {
 	else if (enemyActivated === false) {
 		$('.duelStats').empty();
 		$('.duelStats').append('<br>' + 'Select your opponent.');
+	}
+	else if (yourCharacter.healthPoints < 1) {
+		$('.defender').empty();
 	}
 	else {
 		yourCharacter.counterAttackPower++;
@@ -103,11 +104,9 @@ $('.attack').on('click', function() {
 			$('.defender').empty();
 			$('.duelStats').append('<br>' + 'You have defeated ' + currentDefender.name + '!');
 			enemyActivated = false;
-			wins++;
 		}
 
-		else if (yourCharacter.healthPoints < 1) {
-			$('.activeCharacter').empty();
+		if (yourCharacter.healthPoints < 1) {
 			$('.duelStats').append('<br>' + 'You have been defeated by ' + currentDefender.name + '. Try again.');
 		}
 

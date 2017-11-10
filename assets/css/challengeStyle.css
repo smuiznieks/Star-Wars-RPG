@@ -1,5 +1,23 @@
-img {
-	width: 200px;
+body {
+	background-image: url("../images/starwars.jpg");
 }
 
- 
+.character {
+	background-color: green;
+}
+
+.heading, .enemies {
+	color: white;
+}
+
+.opacity {
+	background-color: white;
+	opacity: 0.9;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.greenBorder {
+	border: 5px solid green;
+}
+	

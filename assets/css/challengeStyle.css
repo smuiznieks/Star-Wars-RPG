@@ -2,10 +2,6 @@ body {
 	background-image: url("../images/starwars.jpg");
 }
 
-.character {
-	background-color: green;
-}
-
 .heading, .enemies {
 	color: white;
 }

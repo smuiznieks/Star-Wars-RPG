@@ -42,6 +42,14 @@ var character2 = $('#Maz');
 var character3 = $('#Rey');
 var character4 = $('#Leia');
 
+
+
+//var numberedCharacters = [($('#Korr')) ($('#Maz')), ($('#Rey')), ($('#Leia')) ]
+
+function printHP() {
+
+}
+
 $(document).ready(function() {
 	$('.restartButton').hide();
 });
@@ -76,7 +84,7 @@ function chooseCharacter() {
 	$('.duelStats').empty();
 	if (enemyActivated === true) {
 	}
-	else if (yourCharacterActivated === true) {
+	if (yourCharacterActivated === true) {
 		currentDefender.name = $(this).attr('id');
 		currentDefender.healthPoints = $(this).attr('value');
 		console.log(currentDefender.healthPoints);
@@ -131,9 +139,8 @@ function attack() {
 			$('.defender').empty();
 			$('.duelStats').html('<p>' + 'You have defeated ' + currentDefender.name + '!' + '</p>');
 			wins++;
-			if (wins < 3) {
-				enemyActivated = false;
-			};
+			enemyActivated = false;
+			//};
 			if (wins === 3) {
 				$('.duelStats').html('<p>' + 'All of your enemies have been vanquished.' + '</p>' + '<br>')
 				$('.attackButton').hide();
@@ -150,6 +157,8 @@ function attack() {
 		else {
 			$('.duelStats').html('<p>' + 'You attacked ' + currentDefender.name + ' for ' + currentPower + ' damage.' + '</p>');
 			$('.duelStats').append('<p>' + currentDefender.name + ' attacked you for ' + currentDefender.attackPower + ' damage.' + '</p>');
+			$('.duelStats').append('<p>' + 'Your Health Points: ' + yourCharacter.healthPoints + '</p>');
+			$('.duelStats').append('<p>' + currentDefender.name + ' Health Points: ' + currentDefender.healthPoints);
 		}
 	}
 }
